@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Other Page</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/homestyle.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/datastyle.css}"/>
+  <style>
+    html {
+      overflow-y: scroll;
+    }
+  </style>
+  <style>
+    .message-box {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .success {
+      background-color: #DFF2BF;
+      color: #4F8A10;
+      border: 1px solid #D6E9C6;
+    }
+
+    .error {
+      background-color: #FFBABA;
+      color: #D8000C;
+      border: 1px solid #FBC2C4;
+    }
+  </style>
+</head>
+<body>
+<div style="padding: 20px" th:replace="~{header :: header}"></div>
+<a href="/usertests" id="check-tests-btn">Check My Tests</a>
+
+<div id="user-data-container">
+  <h1 style="margin-bottom: 30px">User Data</h1>
+
+  <!-- Error or Success Box -->
+  <div th:if="${!#strings.isEmpty(message)}" th:classappend="${status} + ' message-box'">
+    <p th:text="${message}"></p>
+  </div>
+
+  <form name="f" th:action="@{/data/savedata}" method="post">
+    <!--suppress XmlInvalidId -->
+    <label for="maillogin">Is 2 Factor authentication enabled: </label>
+    <input type="checkbox" name="maillogin" th:checked="${maillogin}" />
+
+    <label for="username">Username:</label>
+    <input id="username" type="text" th:value="${username}" name="username"/>
+
+    <label for="password">Enter new password:</label>
+    <input type="password" id="password" name="password" />
+
+    <label for="cpassword">Confirm your new password:</label>
+    <input type="password" id="cpassword" name="cpassword" />
+
+    <div class="button-container">
+      <button type="submit" id="save-edit-btn">Save Edit</button>
+    </div>
+  </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.dropdown-trigger').click(function() {
+      $(this).next('.dropdown').toggleClass('active');
+      $(this).parent().toggleClass('active');
+    });
+  });
+</script>
+
+</body>
+</html>

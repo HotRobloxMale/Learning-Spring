@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Available Categories</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/mainstyle.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+  <style>
+    html {
+      overflow-y: scroll;
+    }
+  </style>
+</head>
+<body>
+<div style="padding: 20px" th:replace="~{mainheader :: mainheader}"></div>
+
+<div class="container mt-5">
+  <div th:each="category : ${categories}" th:if="${category.active}" class="row mb-4">
+    <div class="col">
+      <div class="card rounded">
+        <div class="card-body">
+          <div class="category-container">
+            <div class="category-header">
+              <h5 class="card-title">
+                <span th:text="${category.categoryName}">Category Name</span>
+              </h5>
+            </div>
+            <div class="arrow-container rounded-circle">
+              <span class="arrow">&#9654;</span>
+            </div>
+          </div>
+          <p class="card-text" th:text="${category.categoryDescription}">Category Description</p>
+          <div class="subcategory-box">
+            <ul>
+              <th:block th:each="subcategory : ${category.subcategories}" th:if="${subcategory.active}">
+                <li th:text="${subcategory.subcategoryName}">Subcategory</li>
+              </th:block>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.arrow-container').click(function() {
+      $(this).find('.arrow').toggleClass('arrow-down');
+      $(this).parents('.card-body').find('.subcategory-box').slideToggle();
+    });
+  });
+</script>
+
+</body>
+</html>

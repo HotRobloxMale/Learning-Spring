@@ -1,0 +1,22 @@
+.success-message {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.home-button {
+    text-align: left;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.home-button a {
+    text-decoration: none;
+    background-color: #f1f1f1;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+.home-button a:hover {
+    background-color: #ddd;
+}

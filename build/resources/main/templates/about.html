@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+    <link th:if="${#authorization.expression('isAuthenticated()')}" rel="stylesheet" type="text/css" th:href="@{/css/homestyle.css}" />
+    <link th:unless="${#authorization.expression('isAuthenticated()')}" rel="stylesheet" type="text/css" th:href="@{/css/mainstyle.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/aboutstyle.css}"/>
+<style>
+    html {
+        overflow-y: scroll;
+    }
+</style>
+
+</head>
+<body>
+<div th:if="${#authorization.expression('isAuthenticated()')}">
+    <div style="padding: 20px" th:replace="~{header :: header}"></div>
+</div>
+<div th:unless="${#authorization.expression('isAuthenticated()')}">
+    <div style="padding: 20px" th:replace="~{mainheader :: mainheader}"></div>
+</div>
+<section id="about">
+    <h2>About Our Project</h2>
+    <div class="content">
+        <p>Welcome to our competency checker platform! This project is a part of our initiatives to utilize advanced technology in assessing the potential and competency of individuals in the field of programming and development.</p>
+
+        <p>Our platform works by presenting users with a set of problems or tasks in different programming related categories. As the user provides their solutions or answers, our system forwards these responses to an advanced Artificial Intelligence (AI) model.</p>
+
+        <p>The AI is built with state-of-the-art machine learning techniques and has been trained on a wide range of correct and incorrect programming solutions. This allows it to effectively rate the user's answers in terms of correctness, efficiency, and even coding style.</p>
+
+        <p>Upon completion of the tests, the AI generates a comprehensive summary of the user's performance, identifying their strengths and areas for improvement. This serves as a valuable tool for users to understand their competency level and progress in their learning journey.</p>
+
+        <p>This project, being part of our Curriculum Vitae (CV), demonstrates our ability to integrate and apply complex technologies in practical, user-centric applications. We hope it provides users with valuable insight into their programming skills and aids in their personal and professional development.</p>
+    </div>
+</section>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.dropdown-trigger').click(function() {
+            $(this).next('.dropdown').toggleClass('active');
+            $(this).parent().toggleClass('active');
+        });
+    });
+</script>
+</body>
+</html>

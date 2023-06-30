@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>How It Works?</title>
+    <link th:if="${#authorization.expression('isAuthenticated()')}" rel="stylesheet" type="text/css" th:href="@{/css/homestyle.css}" />
+    <link th:unless="${#authorization.expression('isAuthenticated()')}" rel="stylesheet" type="text/css" th:href="@{/css/mainstyle.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/howitworksstyle.css}"/>
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+    </style>
+
+</head>
+<body>
+<div th:if="${#authorization.expression('isAuthenticated()')}">
+    <div style="padding: 20px" th:replace="~{header :: header}"></div>
+</div>
+<div th:unless="${#authorization.expression('isAuthenticated()')}">
+    <div style="padding: 20px" th:replace="~{mainheader :: mainheader}"></div>
+</div>
+<section id="content">
+    <div class="container">
+        <h2 class="content-title">How It Works</h2>
+        <p class="content-paragraph">Our innovative platform provides an easy way to assess your competency for various programming-related jobs. Here's how it works:</p>
+
+        <h3 class="content-subtitle">Step 1: Choose Your Desired Position</h3>
+        <p class="content-paragraph">Select the job role you're interested in. This could be anything from a Software Developer, Data Scientist, Machine Learning Engineer, or even a Full Stack Developer. We offer a wide range of technical job categories to choose from.</p>
+
+        <h3 class="content-subtitle">Step 2: Complete the Assessment</h3>
+        <p class="content-paragraph">Once you've selected your job role, we'll provide you with a series of questions tailored to assess the required skills and knowledge for that position. Your responses will be sent to our sophisticated AI system for analysis.</p>
+
+        <h3 class="content-subtitle">Step 3: Get Your Results</h3>
+        <p class="content-paragraph">After you complete the assessment, our AI system will evaluate your answers. You will receive a detailed report on your competency level, including areas where you excel and those you might need to improve.</p>
+
+        <h3 class="content-subtitle">Step 4: Improve Your Skills</h3>
+        <p class="content-paragraph">Based on the feedback from your report, you can focus on enhancing your skills in the areas that need improvement. This targeted learning approach helps you become a more competent and desirable candidate for your chosen job role.</p>
+
+        <h3 class="content-subtitle">Start Your Assessment Today!</h3>
+        <p class="content-paragraph">Ready to find out where you stand? Get started with our assessment today and take the first step towards achieving your career goals in programming.</p>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.dropdown-trigger').click(function() {
+            $(this).next('.dropdown').toggleClass('active');
+            $(this).parent().toggleClass('active');
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Please Login</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mainstyle.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/authstyle.css}"/>
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+<div style="padding: 20px" th:replace="~{mainheader :: mainheader}"></div>
+
+<div id="authform">
+    <form name="f" th:action="@{/login/authenticate}" method="post">
+        <fieldset>
+            <legend>Please Login</legend>
+            <div class="error-message" th:if="${param.error}">
+                <p>Invalid username and password.</p>
+            </div>
+            <!-- Display the authentication code field only if the user is logged in and has enabled mail login -->
+            <div>
+                <div>
+                    <label for="code">Code</label>
+                    <input type="text" id="code" name="code" autofocus="autofocus"/>
+                </div>
+                <div>
+                    <input type="submit" value="Confirm code"/>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<script>
+    function resendCode() {
+        // Implement the logic to resend the code here
+        // For example, you can make an AJAX request to a server endpoint to send the code again
+        alert('Code resent!');
+    }
+</script>
+
+</body>
+</html>

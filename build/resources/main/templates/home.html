@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Other Page</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/homestyle.css}"/>
+  <style>
+    html {
+      overflow-y: scroll;
+    }
+  </style>
+</head>
+<body>
+<div style="padding: 20px" th:replace="~{header :: header}"></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.dropdown-trigger').click(function() {
+      $(this).next('.dropdown').toggleClass('active');
+      $(this).parent().toggleClass('active');
+    });
+  });
+</script>
+
+</body>
+</html>

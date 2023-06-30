@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Website</title>
+    <link rel="stylesheet" type="text/css" href="/css/homestyle.css">
+</head>
+<body>
+<header>
+    <div class="logo">Logo</div>
+    <div class="menu">
+        <div class="tabs">
+            <a href="/category" class="tab-link">Test Yourself</a>
+            <a href="/howitworks" class="tab-link">How It Works</a>
+            <a href="/about" class="tab-link">About</a>
+            <a href="/usertests" class="tab-link">My tests</a>
+        </div>
+        <div class="username-dropdown">
+            <div class="dropdown-trigger">
+                <a href="#" class="username" th:text="${username}">Username</a>
+            </div>
+            <div class="dropdown">
+                <a href="/data">Data</a>
+                <a href="/admin" th:if="${isAdmin}">Admin Panel</a>
+                <a th:href="@{/logout}">Logout</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const dropdownTrigger = document.querySelector('.dropdown-trigger');
+        const dropdownMenu = document.querySelector('.dropdown');
+        const usernameDropdown = document.querySelector('.username-dropdown');
+
+        dropdownTrigger.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('active');
+            usernameDropdown.classList.toggle('active');
+        });
+    });
+</script>
+
+</body>
+</html>

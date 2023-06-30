@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Registration Success</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/mainstyle.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/sucessstyle.css}"/>
+  <style>
+    html {
+      overflow-y: scroll;
+    }
+  </style>
+</head>
+<body>
+<div class="header" th:replace="~{mainheader :: mainheader}"></div>
+<div class="main-content">
+  <h2>Registration Successful!</h2>
+  <div class="success-message">
+    <p>Congratulations, your registration was successful.<br>Now Confirm your account with the link on your email.</p>
+  </div>
+  <div class="home-button">
+    <a th:href="@{/}">Home</a>
+  </div>
+</div>
+</body>
+</html>

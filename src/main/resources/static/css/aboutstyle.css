@@ -1,0 +1,23 @@
+
+#about {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#about h2 {
+    font-size: 2.5em;
+    margin-top: 1em;
+    text-align: center;
+    color: #000;
+}
+
+#about .content p {
+    font-size: 1.2em;
+    line-height: 1.5em;
+    color: #333;
+    margin-bottom: 1em;
+    border: 1px solid #333;   /* box around paragraph */
+    padding: 1em;   /* space inside box */
+    border-radius: 10px;   /* rounded corners */
+}

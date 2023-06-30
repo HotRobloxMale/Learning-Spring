@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homestyle.css}"/>
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+        a {
+            font-weight: bold;
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+            display: inline;
+        }
+        .visible-container {
+            display: flex;
+            align-items: center;
+        }
+        .visible-container span {
+            margin-right: 10px;
+        }
+        input[type="checkbox"] {
+            height: 20px;
+            width: 20px;
+            margin-right: 10px;
+        }
+        .btn {
+            font-size: 18px;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #007BFF;
+            padding: 10px 20px;
+            width: 200px;
+            margin: 25px 10px;
+        }
+        .text-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<div style="padding: 20px" th:replace="~{header :: header}"></div>
+<div class="container mt-3 text-center">
+    <button type="button" class="btn btn-primary" onclick="location.href='/admin/addcategory'">Add Category</button>
+    <button type="button" class="btn btn-secondary" onclick="location.href='/admin/addsubcategory'">Add Subcategory</button>
+</div>
+
+<div th:if="${not #strings.isEmpty(message)}" th:classappend="${status} + ' message-box'">
+    <p th:text="${message}"></p>
+</div>
+<form th:action="@{/admin/savechanges}" method="post">
+    <div class="container mt-5">
+        <div th:each="category : ${categories}" class="row mb-4">
+            <div class="col">
+                <div class="card rounded">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <span th:text="${category.categoryName}">Category Name</span>
+                            <div class="visible-container">
+                                <span>Visible:</span>
+                                <input type="checkbox" th:name="'categoryActive_' + ${category.categoryId}" th:checked="${category.active}" />
+                            </div>
+                        </h5>
+                        <p class="card-text" th:text="${category.categoryDescription}">Category Description</p>
+                        <ul>
+                            <li th:each="subcategory : ${category.subcategories}">
+                                <div class="subcategory-container">
+                                    <a th:text="${subcategory.subcategoryName}">Subcategory</a>
+                                    <div class="visible-container">
+                                        <span>Visible:</span>
+                                        <input type="checkbox" th:name="'subcategoryActive_' + ${subcategory.subcategoryId}" th:checked="${subcategory.active}" />
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+    </div>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.dropdown-trigger').click(function() {
+            $(this).next('.dropdown').toggleClass('active');
+            $(this).parent().toggleClass('active');
+        });
+    });
+</script>
+</body>
+</html>

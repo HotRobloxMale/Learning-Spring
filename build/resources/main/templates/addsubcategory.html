@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Subcategory</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homestyle.css}"/>
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input[type="text"] {
+            width: 95%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .form-group input[type="checkbox"] {
+            width: 25px;
+            height: 25px;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: #fff;
+            font-weight: bold;
+        }
+        .message-box {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        .success {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+        .category-combo {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .visibility-checkbox {
+            display: flex;
+            align-items: center;
+        }
+        .visibility-checkbox label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div style="padding: 20px" th:replace="~{header :: header}"></div>
+
+<div style="margin-top: 25px" id="user-data-container" class="container">
+    <h1 style="margin-bottom: 30px">Add Subcategory</h1>
+    <!-- Error or Success Box -->
+    <div th:if="${!#strings.isEmpty(message)}" th:classappend="${status} + ' message-box'">
+        <p th:text="${message}"></p>
+    </div>
+
+    <form th:action="@{/admin/addsubcategory/add}" method="post">
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <select id="category" name="category" class="category-combo" required>
+                <option value="" selected disabled>Select Category</option>
+                <option th:each="category : ${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="subcategoryName">Subcategory Name:</label>
+            <input type="text" id="subcategoryName" name="subcategoryName" required />
+        </div>
+
+        <div class="form-group">
+            <label for="subcategoryDescription">Subcategory Description:</label>
+            <input type="text" id="subcategoryDescription" name="subcategoryDescription" required />
+        </div>
+
+        <!-- Add input fields for questions and summary -->
+        <div class="form-group">
+            <label for="question1">Question 1:</label>
+            <input type="text" id="question1" name="question1" required />
+        </div>
+
+        <div class="form-group">
+            <label for="question2">Question 2:</label>
+            <input type="text" id="question2" name="question2" required />
+        </div>
+
+        <div class="form-group">
+            <label for="question3">Question 3:</label>
+            <input type="text" id="question3" name="question3" required />
+        </div>
+
+        <div class="form-group">
+            <label for="question4">Question 4:</label>
+            <input type="text" id="question4" name="question4" required />
+        </div>
+
+        <div class="form-group">
+            <label for="question5">Question 5:</label>
+            <input type="text" id="question5" name="question5" required />
+        </div>
+
+        <div class="form-group visibility-checkbox">
+            <input type="checkbox" id="subcategoryVisible" name="subcategoryVisible" />
+            <label for="subcategoryVisible">Visible</label>
+        </div>
+
+        <div class="button-container">
+            <button type="submit">Add New Subcategory</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.dropdown-trigger').click(function() {
+            $(this).next('.dropdown').toggleClass('active');
+            $(this).parent().toggleClass('active');
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Please Login</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/mainstyle.css}"/>
+  <link rel="stylesheet" href="/css/loginstyle.css">
+  <style>
+    html {
+      overflow-y: scroll;
+    }
+  </style>
+</head>
+<body>
+<div style="padding: 20px" th:replace="~{mainheader :: mainheader}"></div>
+<div id="loginform">
+  <form name="f" th:action="@{/login/process}" method="post">
+    <fieldset>
+      <legend>Please Login</legend>
+      <div th:if="${error}" class="error-message">
+        <p th:text="${error}"></p>
+      </div>
+      <div th:if="${param.logout}">
+        <p>You have been logged out.</p>
+      </div>
+      <div>
+        <label for="login">Login</label>
+        <input type="text" id="login" name="login" autofocus="autofocus"/>
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password"/>
+        <a href="/passwordrequest" style="display:block; margin-top: 5px; margin-bottom: 5px;">Forgot Password?</a>
+      </div>
+      <div>
+        <input type="submit" value="Login"/>
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+</body>
+</html>

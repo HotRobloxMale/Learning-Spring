@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Other Page</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/teststyle.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/homestyle.css}"/>
+
+  <style>
+    .question {
+      margin-left: 2vw;
+      word-wrap: break-word;
+      width: 60vw;
+    }
+  </style>
+  <style>
+    html {
+      overflow-y: scroll;
+    }
+  </style>
+</head>
+<body>
+<div th:replace="~{header :: header}"></div>
+
+<h1 style="margin-left: 20vw" th:text="${subcategory.subcategoryName}">Subcategory Name</h1>
+<p style="margin-left: 22vw" th:text="${subcategory.subcategoryDescription}">Subcategory Description</p>
+
+<form th:action="@{/test/process}" method="post">
+  <div th:object="${subcategory}">
+    <label>
+      <h2 class="question">1. <span th:text="*{question1}">Question 1</span></h2>
+      <textarea th:id="'answer1'" th:name="'answer1'"></textarea>
+    </label>
+    <label>
+      <h2 class="question">2. <span th:text="*{question2}">Question 2</span></h2>
+      <textarea th:id="'answer2'" th:name="'answer2'"></textarea>
+    </label>
+    <label>
+      <h2 class="question">3. <span th:text="*{question3}">Question 3</span></h2>
+      <textarea th:id="'answer3'" th:name="'answer3'"></textarea>
+    </label>
+    <label>
+      <h2 class="question">4. <span th:text="*{question4}">Question 4</span></h2>
+      <textarea th:id="'answer4'" th:name="'answer4'"></textarea>
+    </label>
+    <label>
+      <h2 class="question"  >5. <span th:text="*{question5}">Question 5</span></h2>
+      <textarea th:id="'answer5'" th:name="'answer5'"></textarea>
+    </label>
+  </div>
+  <button type="submit">Submit Answers</button>
+</form>
+
+
+<!-- Rest of the page content -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.dropdown-trigger').click(function() {
+      $(this).next('.dropdown').toggleClass('active');
+      $(this).parent().toggleClass('active');
+    });
+
+    $('form').on('submit', function() {
+      $('textarea').each(function() {
+        var textareaValue = $(this).val();
+        textareaValue = textareaValue.replace(/\n/g, ' q/qq');  // replace newline characters with '<br>'
+        $(this).val(textareaValue);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>My Website</title>
+  <link rel="stylesheet" type="text/css" href="/css/mainstyle.css">
+
+</head>
+<body>
+<div th:fragment="mainheader">
+  <header>
+    <div class="logo">Logo</div>
+    <nav class="menu">
+      <div class="tabs">
+        <a href="/availablecategories" class="tab-link">Available Categories</a>
+        <a href="/howitworks" class="tab-link">How It Works</a>
+        <a href="/about" class="tab-link">About</a>
+      </div>
+      <div class="right-menu">
+        <a href="/login" class="tab-link">Login</a>
+        <a href="/register" class="tab-link">Sign Up</a>
+      </div>
+    </nav>
+  </header>
+</div>
+</body>
+</html>

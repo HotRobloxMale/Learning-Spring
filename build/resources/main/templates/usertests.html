@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Other Page</title>
+  <style>
+    .page-description {
+      font-size: 2em; /* You can change this size to fit your needs */
+      font-weight: bold;
+      text-align: center; /* Center the text */
+      /* Add some margin on the top and bottom */
+      margin: 50px 0 20px;
+    }
+    .arrow-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .test-header .card-title span:first-child {
+      font-weight: bold;
+    }
+
+    .test-header .card-title span:last-child {
+      font-size: smaller;
+    }
+  </style>
+  <style>
+    html {
+      overflow-y: scroll;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/homestyle.css}"/>
+</head>
+<body>
+<div style="padding: 20px" th:replace="~{header :: header}"></div>
+<h1 class="page-description">Here you can preview all tests taken by you and their results</h1>
+<div class="container mt-5">
+  <div th:each="test : ${userTests}" class="row mb-4">
+    <div class="col">
+      <div class="card rounded">
+        <div class="card-body">
+          <div class="test-container">
+            <div class="test-header">
+              <h5 class="card-title">
+                <span th:text="${test.subCategory.category.categoryName} + ' - ' + ${test.subCategory.subcategoryName}">Username - Subcategory Name</span><br>
+                <span th:text="${#temporals.format(test.testtime, 'dd-MM-yyyy HH:mm')}"></span>
+
+              </h5>
+              <div class="arrow-container rounded-circle"> <!-- Apply rounded corners to the arrow container -->
+                <span class="arrow">&#9654;</span>
+              </div>
+            </div>
+            <p class="card-text">
+              <strong>Summary:</strong> <br>
+              <span th:text="${test.summary}">Test Summary</span>
+            </p>
+            <div class="qa-box">
+              <p><strong th:text="'Question 1. ' + ${test.subCategory.question1}">Question 1</strong></p>
+              <p th:text="${test.answer1}">Answer 1</p>
+
+              <p><strong th:text="'Question 2. ' + ${test.subCategory.question2}">Question 2</strong></p>
+              <p th:text="${test.answer2}">Answer 2</p>
+
+              <p><strong th:text="'Question 3. ' + ${test.subCategory.question3}">Question 3</strong></p>
+              <p th:text="${test.answer3}">Answer 3</p>
+
+              <p><strong th:text="'Question 4. ' + ${test.subCategory.question4}">Question 4</strong></p>
+              <p th:text="${test.answer4}">Answer 4</p>
+
+              <p><strong th:text="'Question 5. ' + ${test.subCategory.question5}">Question 5</strong></p>
+              <p th:text="${test.answer5}">Answer 5</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // Hide qa-box and card-text on page load
+    $('.qa-box, .card-text').hide();
+
+    // Handle click event for test-header
+    $('.test-header').click(function() {
+      $(this).find('.arrow').toggleClass('arrow-down');
+      var container = $(this).closest('.test-container');
+      container.find('.qa-box, .card-text').slideToggle();
+    });
+  });
+  $(document).ready(function() {
+    $('.dropdown-trigger').click(function() {
+      $(this).next('.dropdown').toggleClass('active');
+      $(this).parent().toggleClass('active');
+    });
+    });
+</script>
+
+</body>
+</html>

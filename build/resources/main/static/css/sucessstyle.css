@@ -1,0 +1,48 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff;
+    color: #000;
+    margin: 0;
+    overflow-x: hidden;
+    padding: 0;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;  /* Adjust this value based on the height of your header */
+}
+
+.main-content h2 {
+    font-size: 2.5em;
+    margin-top: 1em;
+    text-align: center;
+    color: #000;
+}
+
+.success-message {
+    font-size: 1.2em;
+    line-height: 1.5em;
+    color: #333;
+    border: 1px solid #333;
+    border-radius: 10px;
+    width: fit-content; /* This will fit the content */
+    padding: 25px; /* This will provide 25px padding on all sides */
+    text-align: center; /* This will center the text */
+}
+
+.home-button {
+    text-align: center;
+    margin-top: 2em;
+}
+
+.home-button a {
+    font-size: 1.2em;
+    color: #000;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 1px solid #333;
+    border-radius: 10px;
+}

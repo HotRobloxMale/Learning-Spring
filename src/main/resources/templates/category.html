@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Available Categories</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/homestyle.css}"/>
+  <style>
+    html {
+      overflow-y: scroll;
+    }
+  </style>
+  <style>
+    a{
+      font-weight: bold;
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline; /* Add this line */
+    }
+  </style>
+</head>
+<body>
+<div style="padding: 20px" th:replace="~{header :: header}"></div>
+
+<div class="container mt-5">
+  <div th:each="category : ${categories}" th:if="${category.active}" class="row mb-4">
+    <div class="col">
+      <div class="card rounded">
+        <div class="card-body">
+          <div class="category-container">
+            <div class="category-header">
+              <h5 class="card-title">
+                <span th:text="${category.categoryName}">Category Name</span>
+              </h5>
+            </div>
+            <div class="arrow-container rounded-circle"> <!-- Apply rounded corners to the arrow container -->
+              <span class="arrow">&#9654;</span>
+            </div>
+          </div>
+          <p class="card-text" th:text="${category.categoryDescription}">Category Description</p>
+          <div class="subcategory-box">
+            <ul>
+              <th:block th:each="subcategory : ${category.subcategories}" th:if="${subcategory.active}">
+                <li>
+                  <a th:href="@{'/test'(id=${subcategory.subcategoryId})}" th:text="${subcategory.subcategoryName}">Subcategory</a>
+                </li>
+              </th:block>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.arrow-container').click(function() {
+      $(this).find('.arrow').toggleClass('arrow-down');
+      $(this).parents('.card-body').find('.subcategory-box').slideToggle();
+    });
+  });
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.dropdown-trigger').click(function() {
+      $(this).next('.dropdown').toggleClass('active');
+      $(this).parent().toggleClass('active');
+    });
+  });
+</script>
+</body>
+</html>
